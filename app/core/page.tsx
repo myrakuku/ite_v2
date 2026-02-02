@@ -153,8 +153,28 @@ export default function CorePage() {
       
       {/* 核心課程體系區 */}
       <section className="max-w-7xl mx-auto px-20 py-12 bg-gray-50 rounded-xl my-8">
-        <h1 className="text-5xl font-light text-gray-400 mb-2 text-center">Core Curriculum System</h1>
+        <h1 className="text-4xl font-light text-gray-400 mb-2 text-center">Core Curriculum System</h1>
         <h3 className="text-2xl font-semibold text-gray-700 mb-8 text-center">核心課程體系</h3>
+
+        {/* introduction */}
+        <div className='mb-8'>
+          <h4 className="text-md font-semibold text-gray-500 mb-8 text-center">別讓重複工作與安全隱患拖慢公司發展——用 50% 成本，換取 100% 數碼轉型成果！</h4>
+          <p className="text-md text-gray-800 mb-3">為什麼選擇我們？</p>
+          <ul className="flex flex-col space-y-6">
+            <li className="text-sm">✔ 實戰導向：課程結束後，員工能直接交付自動化腳本、數據分析儀表板 (Dashboard)、網絡安全守則及AI 內容產出 SOP，立即應用於工作。</li>
+            <li className="text-sm">✔ 模組化設計：可針對部門需求單選（如：為 Marketing 部門報讀 AI 影片製作；為 Admin 部門報讀 Python 自動化），或組合全套課程。</li>
+            <li className="text-sm">✔ 全方位覆蓋：從網絡安全 (CyberSecurity)、數據分析 (Python/SQL)，到業務自動化與 AI 內容製作，打造一條龍的數碼人才梯隊。</li>
+            <li className="text-sm">✔ 成果可視化：不同於一般培訓，我們確保學員產出實質成果（Deliverables），如自動化工作流、標準化數據報告模板及企業網絡安全規範。</li>
+            <li className="text-sm">✔ 政府資助：課程符合新型工業化及科技培訓計劃 (NITTP*) 資格，貴公司可申請最高 50% 學費資助。</li>
+          </ul>
+          <p className="text-xs text-gray-800 my-6">* 
+            <br />Step 1: 到 NITTP 平台註冊企業帳號： https://nittp.vtc.edu.hk/rttp/organisation/registration
+            <br />Step 2: 上載/輸入員工資料
+            <br />Step 3: 選擇宏業教育中心 課程科目（公開課程或客製化）
+            <br />Step 4: 批核後聯絡 宏業教育中心 3163 9569 繳交學費
+            <br />Step 5: 完成培訓後遞交相關文件，等待資助撥款
+          </p>
+        </div>
         
         <div className="grid grid-cols-1 gap-12">
           {/* map coreCourses 1-9 */}
