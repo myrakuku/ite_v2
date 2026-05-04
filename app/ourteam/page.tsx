@@ -167,89 +167,113 @@ export default function TeamPage() {
 
       {/* 專業教育團隊區塊 */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-light text-gray-500 mb-2">Our Professional Team</h2>
-          <h3 className="text-xl font-semibold text-gray-800">我們專業的教育團隊</h3>
-        </div>
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-light text-gray-500 mb-2">Our Professional Team</h2>
+        <h3 className="text-xl font-semibold text-gray-800">我們專業的教育團隊</h3>
+      </div>
 
-        <div className="grid grid-cols-5 gap-8">
-          {/* 教師列表（左側） */}
-          <div className="flex lg:block col-span-1 space-y-8">
-            {teamMembers.map((member) => (
-              <div 
-                key={member.id}
-                onClick={() => setActiveMember(member)}
-                className={`p-4 rounded-lg cursor-pointer transition-all ${
-                  activeMember.id === member.id ? "bg-gray-100 shadow-md" : "hover:bg-gray-50"
-                }`}
-              >
-                <h4 className="text-sm md:text-xl font-medium text-gray-800">{member.name}</h4>
-              </div>
-            ))}
-          </div>
-
-          {/* 教師詳情（右側） */}
-          <div className="col-span-5 lg:col-span-4 bg-gray-50 p-8 rounded-lg shadow-sm">
-            <div className="flex items-center gap-4 mb-5">
-                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200">
+      {/* 核心：grid适配 + 手机端横向滚动列表 | 保留md/lg 5列网格 */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        {/* 教師列表（左側）：lg端垂直列表 | sm及以下横向滚动栏（收窄宽度+文字排密） */}
+        <div className="lg:col-span-1 mb-6 lg:mb-0">
+          {/* 手机端滚动容器 + 样式 | lg端自动失效 */}
+          <div className="overflow-x-auto pb-4 lg:overflow-x-visible lg:pb-0 scrollbar-hide">
+            <div className="flex lg:block gap-1 lg:gap-0 lg:space-y-8 w-max lg:w-full">
+              {teamMembers.map((member) => (
+                <div 
+                  key={member.id}
+                  onClick={() => setActiveMember(member)}
+                  className={`p-2 lg:p-4 rounded-lg cursor-pointer transition-all min-w-30 lg:min-w-0 ${
+                    activeMember.id === member.id 
+                      ? "bg-gray-100 shadow-md border border-gray-200" 
+                      : "hover:bg-gray-50 border-transparent"
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-gray-200 mx-auto lg:mx-0"> 
                     <img 
-                      src={activeMember.avatar} 
-                      alt={activeMember.name} 
+                      src={member.avatar} 
+                      alt={member.name} 
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
+                  <h4 className="text-xs lg:text-xl font-medium text-gray-800 text-center lg:text-left mt-1">
+                    {member.name}
+                  </h4>
                 </div>
-            <h4 className="text-xl font-medium text-gray-800 mb-4">{activeMember.name}</h4>
-            <p className="text-md font-medium text-gray-400 mb-4">{activeMember.position}</p>
-            
-            <p className="text-gray-600 mb-6">
-              {activeMember.intro}
-            </p>
-
-            {/* 技術背景/專長區塊 */}
-            {activeMember.technicalBg && (
-              <div className="mb-6">
-                <h5 className="font-medium text-gray-800 mb-2">Technical Background:</h5>
-                <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                  {activeMember.technicalBg.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {activeMember.educationalContrib && (
-              <div className="mb-6">
-                <h5 className="font-medium text-gray-800 mb-2">Professional & Educational Contributions</h5>
-                <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                  {activeMember.educationalContrib.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {activeMember.expertise && (
-              <div className="mb-6">
-                <h5 className="font-medium text-gray-800 mb-2">Expertise:</h5>
-                <ul className="list-disc pl-5 text-gray-600 space-y-1">
-                  {activeMember.expertise.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {activeMember.bio && (
-              <div>
-                <p className="text-gray-600">
-                  {activeMember.bio}
-                </p>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
         </div>
-      </section>
+
+        {/* 教師詳情（右側）：lg端col-span-4 | 手机端全屏col-span-1 */}
+        <div className="lg:col-span-4 bg-gray-50 p-6 sm:p-8 rounded-lg shadow-sm">
+          {/* 头像+姓名+职称 行内布局优化（手机端更紧凑） */}
+          <div className="flex items-center gap-6 mb-6">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-2 border-gray-200">
+              <img 
+                src={activeMember.avatar} 
+                alt={activeMember.name} 
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            {/* 姓名+职称容器（垂直排列，手机端不挤） */}
+            <div>
+              <h4 className="text-xl sm:text-2xl font-medium text-gray-800 mb-2">{activeMember.name}</h4>
+              <p className="text-md sm:text-lg font-medium text-gray-400">{activeMember.position}</p>
+            </div>
+          </div>
+          
+          {/* 教师简介（手机端行高优化） */}
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            {activeMember.intro}
+          </p>
+
+          {/* 技術背景/專長區塊 - 手机端内边距/间距优化 */}
+          {activeMember.technicalBg && (
+            <div className="mb-5 sm:mb-6">
+              <h5 className="font-medium text-gray-800 mb-2 text-base sm:text-lg">Technical Background:</h5>
+              <ul className="list-disc pl-5 text-gray-600 space-y-1 sm:space-y-2 text-sm sm:text-base">
+                {activeMember.technicalBg.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {activeMember.educationalContrib && (
+            <div className="mb-5 sm:mb-6">
+              <h5 className="font-medium text-gray-800 mb-2 text-base sm:text-lg">Professional & Educational Contributions</h5>
+              <ul className="list-disc pl-5 text-gray-600 space-y-1 sm:space-y-2 text-sm sm:text-base">
+                {activeMember.educationalContrib.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {activeMember.expertise && (
+            <div className="mb-5 sm:mb-6">
+              <h5 className="font-medium text-gray-800 mb-2 text-base sm:text-lg">Expertise:</h5>
+              <ul className="list-disc pl-5 text-gray-600 space-y-1 sm:space-y-2 text-sm sm:text-base">
+                {activeMember.expertise.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {activeMember.bio && (
+            <div className="text-sm sm:text-base leading-relaxed">
+              <p className="text-gray-600">
+                {activeMember.bio}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
     </div>
     <Footer/>
     </>

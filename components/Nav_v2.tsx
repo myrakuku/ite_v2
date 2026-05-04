@@ -22,7 +22,13 @@ export default function ITEnav() {
               <Link href="/course">
               <div className="text-left text-sm font-medium text-gray-700 hover:text-blue-700 ">
                 <span className="block">COURSE</span>
-                <span className="block">課程報名</span>
+                <span className="block">課程總覽</span>
+              </div>
+              </Link>
+              <Link href="/news">
+              <div className="text-left text-sm font-medium text-gray-700 hover:text-blue-700 ">
+                <span className="block">NEWS</span>
+                <span className="block">最新消息</span>
               </div>
               </Link>
               <Link href="/ourteam">
@@ -33,12 +39,37 @@ export default function ITEnav() {
               </Link>
               <Link href="/">
               <div className="text-left text-sm font-medium text-gray-700 hover:text-blue-700 ">
-                <span className="block">ABOUT US</span>
+                <span className="block">About Us</span>
                 <span className="block">關於我們</span>
               </div>
               </Link>
             </div>
             </div>
+
+            {/* 桌面端導航 */}
+            
+
+            {/* 右上角功能按鈕 */}
+            <div className="hidden md:flex items-center space-x-4">
+                {/* 登入按鈕 */}
+                <button className="flex items-center gap-1.5 text-sm text-gray-700 hover:text-blue-700 transition-colors">
+                    <LogIn size={16} />
+                    <span>登入</span>
+                </button>
+
+                {/* 註冊按鈕 */}
+                <button className="flex items-center gap-1.5 text-sm text-gray-700 hover:text-blue-700 transition-colors">
+                    <UserPlus size={16} />
+                    <span>註冊</span>
+                </button>
+
+                {/* 購物車按鈕（含數量標記） */}
+                {/* <button className="flex items-center gap-1.5 text-sm text-gray-700 hover:text-blue-700 transition-colors relative">
+                    <ShoppingCart size={16} />
+                    <span>購物車</span>
+                </button> */}
+                </div>
+
             {/* 手機端選單按鈕 */}
             <button 
               className="md:hidden text-gray-800"
@@ -56,7 +87,13 @@ export default function ITEnav() {
               <Link href="/course">
               <div className="text-center py-2  text-gray-500 hover:text-blue-700">
                 <span className="block font-medium">COURSE</span>
-                <span className="block">課程報名</span>
+                <span className="block">課程總覽</span>
+              </div>
+              </Link>
+              <Link href="/news">
+              <div className="text-center py-2  text-gray-500 hover:text-blue-700">
+                <span className="block font-medium">NEWS</span>
+                <span className="block text-gray-500">最新消息</span>
               </div>
               </Link>
               <Link href="/ourteam">
@@ -67,10 +104,20 @@ export default function ITEnav() {
               </Link>
               <Link href="/">
               <div className="text-center py-2  text-gray-500 hover:text-blue-700">
-                <span className="block font-medium">ABOUT US</span>
+                <span className="block font-medium">About Us</span>
                 <span className="block text-gray-500">關於我們</span>
               </div>
               </Link>
+              
+              <div className="flex justify-center space-x-4 py-2">
+                <Link href="/"><button className="text-sm text-gray-600 hover:text-blue-700">登入</button></Link>
+                <Link href="/"><button className="text-sm text-gray-600 hover:text-blue-700">註冊</button></Link>
+                <Link href="/"><button className="flex items-center gap-1.5 text-sm text-gray-700 hover:text-blue-700 transition-colors relative">
+                    {/* <ShoppingCart size={16} />
+                    <span>購物車</span> */}
+                </button>
+                </Link>
+              </div>
             </div>
           </div>
         )}
